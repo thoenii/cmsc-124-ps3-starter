@@ -1,12 +1,12 @@
 id	value	kind	length	operator
 P01	7	integer	none	function
-P02	3	cons	1	function
+P02	(+,1,2)	cons	3	special-operator
 P03	nil	null	0	none
 P04	t	symbol	none	none
 P05	t	symbol	none	function
 P06	nil	null	0	function
 P07	(1,2,3)	cons	3	function
-P08	nil	null	0	special-operator
+P08	empty	symbol	none	special-operator
 P09	nil	null	0	special-operator
 P10	30	integer	none	special-operator
 P11	ps3-twice	symbol	none	macro

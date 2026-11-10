@@ -16,15 +16,16 @@ misread. Those entries belong in the correction commits.
 
 ## P02
 The addition is evaluated first, which gives 3. The result is a `cons` because of the quote, and it has length 1 because it is a list. The head contains `+`, so the operator is `function`
+Correction: CLISP printed `(+,1,2)`, `cons`, length 3 and `special-operator`. I misread what `quote` does, but it returns its argument untouched, so nothing is evaluated and the addition never runs. The value is the three-element list `(+ 1 2)`, which is why the length is 3. The head of the whole form is `quote`, a special operator, and not `+`.
 
 ## P03
-`nil` is `nil`. It is a list with no elements, so its length is 0. It is an atom, not a compound form, so its operator is `none`
+`nil` is `nil`. It is a list with no elements, so its length is 0. It is an atom, not a compound form, so its operator is `none`.
 
 ## P04
-`t` is a symbol and its value is `t`. It is not a list, so its length is `none`. It is an atom, so its operator is `none`
+`t` is a symbol and its value is `t`. It is not a list, so its length is `none`. It is an atom, so its operator is `none`.
 
 ## P05
-`symbolp` of `nil` returns `t`, because `nil` is a symbol. `t` is a symbol, and it is not a list, so its length is `none`. The head `symbolp` is a function
+`symbolp` of `nil` returns `t`, because `nil` is a symbol. `t` is a symbol, and it is not a list, so its length is `none`. The head `symbolp` is a function.
 
 ## P06
 `car` returns the first element of the list, which here is the empty list. Its kind is `null` and its length is 0, because it has no elements. The head `car` is a function.
@@ -33,7 +34,8 @@ The addition is evaluated first, which gives 3. The result is a `cons` because o
 `cons` inserts the element at the front of the list. The result is a list with kind `cons` and length 3. The head `cons` is a function
 
 ## P08
-The quoted empty list is `nil`, so the value is `nil`, its kind is `null`, and its length is 0. The head `if` is a special operator
+The quoted empty list is `nil`, so the value is `nil`, its kind is `null`, and its length is 0. The head `if` is a special operator.
+Correction: CLISP printed `empty`, `symbol`, length `none` and `special-operator`. I treated the quoted `'()` as the result of the form, when it is only the argument to `null`. `(null '())` is true, so `if` evaluates only its first branch and returns the quoted symbol `empty`. A symbol other than `nil` has kind `symbol`, and it is not a sequence, so its length is `none`.
 
 ## P09
 `and` evaluates its arguments left to right and stops at the first false (`nil`) value, so `3` is never evaluated. The result is `nil`, so the kind is `null` and the length is 0. The standard calls `and` a macro, but CLISP also implements it as a special operator, and the course checks for a special operator first, so the operator is `special-operator`.
