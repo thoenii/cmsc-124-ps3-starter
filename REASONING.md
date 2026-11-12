@@ -36,25 +36,25 @@ cons adds 1 to the front of the list (2 3), producing (1 2 3). The result is a c
 null returns T for NIL, so the if condition is true and the quoted symbol empty is returned. if is a special operator.
 
 ## P09
-and evaluates its arguments from left to right and stops when it reaches NIL. Therefore the result is NIL, and and is classified as a special operator by CLISP.
+Replace this line with the rule behind this case's four fields.
 
 ## P10
-*ps3-rate* is a special variable, so the temporary binding of 10 is visible inside ps3-scale. The function returns 3 * 10, or 30, and the outer progn is a special operator.
+Replace this line with the rule behind this case's four fields.
 
 ## P11
-defun defines the function ps3-twice and returns its function name as a symbol. defun is classified as a macro.
+Replace this line with the rule behind this case's four fields.
 
 ## P12
-labels creates a local recursive function, and down recursively builds the list (3 2 1). labels is a special operator and the resulting list has length 3.
+Replace this line with the rule behind this case's four fields.
 
 ## P13
-mapcar applies length to each list, producing 2, 0, and 1. The result is therefore (2 0 1), and mapcar is a function.
+Replace this line with the rule behind this case's four fields.
 
 ## P14
-mapcar applies the anonymous function lambda (n) (* n n) to 1, 2, and 3. Squaring each value produces (1 4 9).
+Replace this line with the rule behind this case's four fields.
 
 ## P15
-A lambda expression in value position produces a function object rather than calling the function. Its printed value is #<function>, and lambda is classified as a macro.
+Replace this line with the rule behind this case's four fields.
 
 ## P16
-The inner function closes over the outer lexical binding of factor, which is 2. The later binding of factor to 10 is a separate shadowing binding, so the result is 6.
+Replace this line with the rule behind this case's four fields.
