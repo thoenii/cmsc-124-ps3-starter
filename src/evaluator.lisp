@@ -20,14 +20,12 @@
 ;;;;         | (operator-expr argument-expr ...)
 
 ;;; E1 -- numbers and symbols.
-
 (defun lookup (name env)
-  "The value NAME is bound to in ENV.
-
-The first match wins, so an inner binding shadows an outer one that shares its
-name. Signal an error when NAME is not bound at all."
-  (declare (ignore name env))
-  (error "lookup is not implemented"))
+  "The value NAME is bound to in ENV. First match wins; error if unbound."
+  (let ((binding (assoc name env)))
+    (if binding
+        (cdr binding)
+        (error "Unbound variable: ~a" name))))
 
 ;;; E2 -- prefix arithmetic.
 
@@ -53,20 +51,17 @@ OP is the symbol +, -, or *. Signal an error for anything else."
 ;;; E3 -- let.
 
 (defun extend-env (params args env)
-  "ENV with PARAMS bound to ARGS in front of it.
-
-MAPCAR takes two lists and #'CONS pairs them. Build a new list. Do not modify
-ENV, because the caller keeps using it after the extension goes out of scope."
-  (declare (ignore params args env))
-  (error "extend-env is not implemented"))
+  "ENV with PARAMS bound to ARGS in front of it. Does not modify ENV."
+  (append (mapcar #'cons params args) env))
 
 (defun eval-let (expr env)
-  "Evaluate (let ((name init) ...) body).
-
-Every init is evaluated in ENV before any name is bound, so the bindings happen
-in parallel and an init cannot see a name the same LET introduces."
-  (declare (ignore expr env))
-  (error "eval-let is not implemented"))
+  "Evaluate (let ((name init) ...) body) with parallel bindings."
+  (let* ((bindings (second expr))
+         (body     (third expr))
+         (names    (mapcar #'first bindings))
+         (inits    (mapcar #'second bindings)))
+    ;; inits are evaluated in ENV, before any name is bound
+    (eval-expr body (extend-env names (eval-operands inits env) env))))
 
 ;;; E4 -- lambda and application.
 
