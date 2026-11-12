@@ -4,6 +4,9 @@
 This repository holds the CLISP prediction corpus and the toy evaluator for
 Problem Set 3. The assignment manual defines the work and the submission rules.
 
+## Pair
+- Jasper Espartero (`@jasper-espartero-upv`)
+- Marie Toney Fay Gelvezon (`@thoenii`)
 ## Layout
 
 ```text
